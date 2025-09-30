@@ -1,55 +1,161 @@
-/* General Styles */
+/* ====== Tipografía & variables ====== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
-body {
-    background-image: url('https://cdn.wallpapersafari.com/96/39/54bTiI.jpg');
-    /*filter: blur(8px);*/
-    backdrop-filter: blur(8px);
-    background-size: cover;
-    font-size: 20px;
-    font-family: Arial, sans-serif;
-    color: rgb(255, 255, 255);
+:root{
+  --bg: #0f1221;
+  --card: #161a2b;
+  --card-2:#1b2035;
+  --text:#e7e9f3;
+  --muted:#a7aec6;
+  --primary:#7aa2ff;
+  --accent:#66e0c2;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
-h1 {
-    color : rgb(255, 255, 255);
-    font-style: italic;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 10px;
-    text-align: center;
+*{ box-sizing: border-box; }
+
+html,body{
+  margin:0;
+  padding:0;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(122,162,255,.15), transparent 60%),
+    radial-gradient(900px 600px at -10% 20%, rgba(102,224,194,.12), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+  line-height:1.6;
 }
 
-table {
-    border-collapse: collapse;
-    width: 70%;
-    margin: 30px;
-    background-color: hsla(0, 0%, 0%, 0.4);
-    border-radius: 30px;
+/* ====== Contenedor principal ====== */
+.container-fluid{
+  max-width: 980px;
+  margin: 48px auto;
+  padding: 32px;
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  border:1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
 }
 
-.navegacion {
-    text-align: center;
+/* Sistema de filas/columnas (simple) */
+.row{ display:flex; flex-wrap:wrap; gap:16px; }
+.col{ flex:1 1 100%; }
+.col-6{ flex:1 1 calc(50% - 8px); min-width:280px; }
+
+/* ====== Encabezados ====== */
+.header{
+  margin:0 0 6px 0;
+  font-size: clamp(28px, 4.2vw, 40px);
+  font-weight: 800;
+  letter-spacing:.3px;
+  background: linear-gradient(90deg, var(--text) 0%, var(--primary) 60%, var(--accent) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.subheader{
+  margin:0 0 20px 0;
+  font-weight:600;
+  color: var(--muted);
 }
 
-.header {
-    text-align: center;
-    padding: 10px;
-    border-radius: 30px;
-    margin: 20px;
+/* ====== Navbar interna ====== */
+.navegacion{
+  position: sticky; top: 10px;
+  display:flex; flex-wrap:wrap; gap:10px;
+  padding: 12px;
+  margin: 10px 0 24px 0;
+  background: rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+.navegacion .links{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  text-decoration:none;
+  color:var(--text);
+  font-weight:600;
+  transition: transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.navegacion .links:hover{
+  transform: translateY(-1px);
+  background: rgba(122,162,255,.12);
+  border-color: rgba(122,162,255,.4);
 }
 
-.subheader {
-    text-align: center;
-    font-style: italic;
-    color: rgb(255, 255, 255);
+/* ====== Enlaces globales ====== */
+a.links{
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(122,162,255,.4);
+  padding-bottom:2px;
+}
+a.links:hover{ border-bottom-style: solid; }
+
+/* ====== Listas y texto ====== */
+ul{ margin:10px 0 18px 0; padding-left:20px; }
+li{ margin:4px 0; color: #dbe0ff; }
+strong{ color:#f4f6ff; }
+
+p{
+  margin: 14px 0 20px 0;
+  color: var(--text);
 }
 
-.links {
-    color: rgb(255, 255, 255);
-    font-style: italic;
-    border-radius: 32px;
-    border: 3px solid rgb(255, 255, 255);
-    padding: 12px;
-    margin: 16px;
-    text-decoration: none;
+/* ====== Foto ====== */
+.foto{
+  float:right;
+  margin: 0 0 12px 18px;
+  border-radius: 14px;
+  border:1px solid var(--border);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
 
+/* ====== Secciones (h2) ====== */
+h2{
+  margin: 26px 0 8px 0;
+  font-size: clamp(18px, 2.6vw, 22px);
+  font-weight: 700;
+  color: #eef0ff;
+}
+h2 + ul, h2 + p{ margin-top:8px; }
+
+/* ====== Definiciones (Experience) ====== */
+dt{ margin-top:8px; }
+dd{
+  margin: 6px 0 14px 0;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+}
+
+/* ====== Tarjetas suaves para bloques de info ====== */
+.col-6 > ul,
+.col-6 > strong{
+  display:block;
+}
+.col-6{
+  background: rgba(255,255,255,0.02);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+}
+
+/* ====== Accesibilidad & pequeños detalles ====== */
+:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 640px){
+  .foto{ float:none; display:block; margin: 0 auto 16px auto; }
+  .container-fluid{ padding: 22px; margin: 28px auto; }
 }
